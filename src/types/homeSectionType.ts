@@ -19,9 +19,11 @@ export const DEFAULT_SECTIONS: HomeSectionType[] = [
     HomeSectionType.SmallLibraryTiles,
     HomeSectionType.Resume,
     HomeSectionType.ResumeAudio,
-    HomeSectionType.ResumeBook,
-    HomeSectionType.LiveTv,
     HomeSectionType.NextUp,
-    HomeSectionType.LatestMedia,
+    HomeSectionType.None,
+    HomeSectionType.None,
+    HomeSectionType.None,
+    HomeSectionType.None,
+    HomeSectionType.None,
     HomeSectionType.None
 ];
