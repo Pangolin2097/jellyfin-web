@@ -241,7 +241,11 @@ class DisplaySettings {
         return apiClient.getUser(userId).then(user => {
             return userSettings.setUserInfo(userId, apiClient).then(() => {
                 self.dataLoaded = true;
-                loadForm(context, user, userSettings);
+
+                loadForm(context, user, userSettings).then(() => {
+                    save(self, context, userId, userSettings, apiClient, false);
+                });
+
                 if (autoFocus) {
                     focusManager.autoFocus(context);
                 }

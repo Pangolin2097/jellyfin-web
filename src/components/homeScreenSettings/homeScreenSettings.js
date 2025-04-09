@@ -500,7 +500,9 @@ class HomeScreenSettings {
             userSettings.setUserInfo(userId, apiClient).then(() => {
                 self.dataLoaded = true;
 
-                loadForm(context, user, userSettings, apiClient);
+                loadForm(context, user, userSettings, apiClient).then(() => {
+                    save(self, context, userId, userSettings, apiClient, false);
+                });
 
                 if (autoFocus) {
                     focusManager.autoFocus(context);
