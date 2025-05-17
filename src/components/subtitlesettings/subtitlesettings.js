@@ -61,7 +61,7 @@ function loadForm(context, user, userSettings, appearanceSettings, apiClient) {
         context.querySelector('#sliderVerticalPosition').value = appearanceSettings.verticalPosition;
 
         context.querySelector('#selectSubtitleBurnIn').value = appSettings.get('subtitleburnin') || '';
-        context.querySelector('#chkSubtitleRenderPgs').checked = (appSettings.get('subtitlerenderpgs') || 'true') === 'true';
+        context.querySelector('#chkSubtitleRenderPgs').checked = (appSettings.get('subtitlerenderpgs')) === 'true';
 
         context.querySelector('#selectSubtitleBurnIn').dispatchEvent(new CustomEvent('change', {}));
         context.querySelector('#chkAlwaysBurnInSubtitleWhenTranscoding').checked = appSettings.alwaysBurnInSubtitleWhenTranscoding();
