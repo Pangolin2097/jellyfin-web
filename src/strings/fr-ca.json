@@ -1508,6 +1508,7 @@
     "PlaybackError.SERVER_ERROR": "La lecture a échoué à cause d'une erreur serveur.",
     "QuickConnectDeactivated": "La connexion rapide a été désactivée avant que la requête ne puisse être approuvée",
     "RemoveFromPlaylist": "Retirer de la liste de lecture",
+    "RemoveFromContinueWatching": "Supprimer de la liste de reprise de visionnage",
     "XmlTvPathHelp": "Un chemin d'accès à un fichier XMLTV. Jellyfin lira ce fichier et en vérifiera périodiquement les mises à jour. Vous êtes responsable de la création et de la mise à jour du fichier.",
     "UseEpisodeImagesInNextUpHelp": "Les sections \"À suivre\" et \"Reprendre le visionnage\" utiliseront les images des épisodes comme vignettes plutôt que la vignette principale de la série.",
     "LabelScanBehaviorHelp": "Le comportement par défaut est non bloquant, ce qui ajoutera les médias à la médiathèque avant que la génération trickplay ne soit terminée. Le blocage garantira que les fichiers trickplay sont générés avant que le média ne soit ajouté à la médiathèque, mais rendra les scans beaucoup plus longs.",
