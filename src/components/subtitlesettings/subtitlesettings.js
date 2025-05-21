@@ -51,7 +51,7 @@ function loadForm(context, user, userSettings, appearanceSettings, apiClient) {
 
         context.querySelector('#selectSubtitlePlaybackMode').dispatchEvent(new CustomEvent('change', {}));
 
-        context.querySelector('#selectTextSize').value = appearanceSettings.textSize || 'large';
+        context.querySelector('#selectTextSize').value = appearanceSettings.textSize || 'normal';
         context.querySelector('#selectTextWeight').value = appearanceSettings.textWeight || 'normal';
         context.querySelector('#selectDropShadow').value = appearanceSettings.dropShadow || '';
         context.querySelector('#inputTextBackground').value = appearanceSettings.textBackground || 'transparent';
