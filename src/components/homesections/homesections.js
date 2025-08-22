@@ -29,7 +29,8 @@ export function getDefaultSection(index) {
 function getAllSectionsToShow(userSettings, sectionCount) {
     const sections = [];
     for (let i = 0, length = sectionCount; i < length; i++) {
-        let section = userSettings.get('homesection' + i) || getDefaultSection(i);
+        //let section = userSettings.get('homesection' + i) || getDefaultSection(i);
+        let section = getDefaultSection(i);
         if (section === 'folders') {
             section = getDefaultSection(0);
         }
@@ -187,4 +188,3 @@ export default {
     pause,
     resume
 };
-
