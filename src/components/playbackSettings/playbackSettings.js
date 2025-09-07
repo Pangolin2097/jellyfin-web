@@ -354,7 +354,11 @@ function embed(options, self) {
         options.element.querySelector('.btnSave').classList.remove('hide');
     }
 
-    self.loadData(options.autoFocus);
+    self.loadData();
+
+    if (options.autoFocus) {
+        focusManager.autoFocus(options.element);
+    }
 }
 
 class PlaybackSettings {
@@ -363,7 +367,7 @@ class PlaybackSettings {
         embed(options, this);
     }
 
-    loadData(autoFocus) {
+    loadData() {
         const self = this;
         const context = self.options.element;
 
@@ -378,13 +382,7 @@ class PlaybackSettings {
                 userSettings.setUserInfo(userId, apiClient).then(() => {
                     self.dataLoaded = true;
 
-                    loadForm(context, user, userSettings, systemInfo, apiClient).then(() => {
-                        save(self, context, userId, userSettings, apiClient, false);
-                    });
-
-                    if (autoFocus) {
-                        focusManager.autoFocus(context);
-                    }
+                    loadForm(context, user, userSettings, systemInfo, apiClient);
                 });
             });
         });

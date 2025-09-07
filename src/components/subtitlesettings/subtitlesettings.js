@@ -247,7 +247,11 @@ function embed(options, self) {
         });
     }
 
-    self.loadData(options.autoFocus);
+    self.loadData();
+
+    if (options.autoFocus) {
+        focusManager.autoFocus(options.element);
+    }
 }
 
 export class SubtitleSettings {
@@ -257,7 +261,7 @@ export class SubtitleSettings {
         embed(options, this);
     }
 
-    loadData(autoFocus) {
+    loadData() {
         const self = this;
         const context = self.options.element;
 
@@ -273,13 +277,7 @@ export class SubtitleSettings {
 
                 const appearanceSettings = userSettings.getSubtitleAppearanceSettings(self.options.appearanceKey);
 
-                loadForm(context, user, userSettings, appearanceSettings, apiClient).then(() => {
-                    save(self, context, userId, userSettings, apiClient, false);
-                });
-
-                if (autoFocus) {
-                    focusManager.autoFocus(context);
-                }
+                loadForm(context, user, userSettings, appearanceSettings, apiClient);
             });
         });
     }
