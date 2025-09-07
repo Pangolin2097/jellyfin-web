@@ -97,7 +97,7 @@
 
         <div class="selectContainer">
             <select is="emby-select" id="selectFont" label="${LabelFont}">
-                <option value="">${Default}</option>
+                <option value="default">${Default}</option>
                 <option value="typewriter">${Typewriter}</option>
                 <option value="print">${Print}</option>
                 <option value="console">${Console}</option>
@@ -107,8 +107,15 @@
             </select>
         </div>
 
-        <div class="inputContainer hide">
-            <input is="emby-input" id="inputTextBackground" label="${LabelTextBackgroundColor}" type="text" />
+        <div class="inputContainer">
+            <input is="emby-input" id="inputTextBackground" label="${LabelTextBackgroundColor}" type="color" />
+        </div>
+
+        <div class="sliderContainer-settings">
+            <div class="sliderContainer">
+                <input is="emby-slider" id="sliderBackgroundTransparency" label="${LabelTextBackgroundOpacity}" type="range" min="0" max="100" />
+            </div>
+            <div class="fieldDescription">${SubtitleBackgroundOpacityHelp}</div>
         </div>
 
         <div class="selectContainer">
@@ -136,7 +143,7 @@
                 <option value="raised">${Raised}</option>
                 <option value="depressed">${Depressed}</option>
                 <option value="uniform">${Uniform}</option>
-                <option value="">${DropShadow}</option>
+                <option value="dropshadow">${DropShadow}</option>
             </select>
         </div>
 

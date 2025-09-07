@@ -680,6 +680,7 @@
     "LabelTextSize": "Taille du texte",
     "LabelTextColor": "Couleur du texte",
     "LabelTextBackgroundColor": "Couleur de fond du texte",
+    "LabelTextBackgroundOpacity": "Opacité du fond de texte",
     "LabelTagline": "Slogan",
     "LabelEnableAutomaticPortMap": "Active le mappage automatique des ports",
     "LabelEmbedAlbumArtDidlHelp": "Certains appareils préfèrent cette méthode pour obtenir les couvertures d'album. D'autres pourraient échouer lors de la lecture lorsque cette option est activée.",
