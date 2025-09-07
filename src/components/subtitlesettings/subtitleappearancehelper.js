@@ -111,8 +111,8 @@ function getTextStyles(settings, preview) {
             list.push({ name: 'font-variant', value: 'none' });
             break;
         case 'smallcaps':
-            list.push({ name: 'font-family', value: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol' });
-            list.push({ name: 'font-variant', value: 'all-small-caps' });
+            list.push({ name: 'font-family', value: 'Copperplate Gothic,Copperplate Gothic Bold,Copperplate,system-ui,-apple-system,BlinkMacSystemFont,sans-serif' });
+            list.push({ name: 'font-variant', value: 'small-caps' });
             break;
         case 'default':
         default:
