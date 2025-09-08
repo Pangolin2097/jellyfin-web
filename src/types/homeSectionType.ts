@@ -20,7 +20,7 @@ export const DEFAULT_SECTIONS: HomeSectionType[] = [
     HomeSectionType.Resume,
     HomeSectionType.ResumeAudio,
     HomeSectionType.NextUp,
-    HomeSectionType.None,
+    HomeSectionType.LatestMedia,
     HomeSectionType.None,
     HomeSectionType.None,
     HomeSectionType.None,
