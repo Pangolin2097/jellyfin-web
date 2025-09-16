@@ -82,6 +82,7 @@ function getTextStyles(settings, preview) {
             background += opacityHex;
         }
         list.push({ name: 'background-color', value: background });
+        list.push({ name: 'padding-inline', value: '0.25em'})
     }
 
     const textColor = settings.textColor || '#ffffff';
