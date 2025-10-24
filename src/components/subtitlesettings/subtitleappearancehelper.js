@@ -6,12 +6,15 @@
 function getTextStyles(settings, preview) {
     const list = [];
 
-    switch (settings.textSize || '') {
+    switch (settings.textSize || 'normal') {
         case 'smaller':
             list.push({ name: 'font-size', value: '.8em' });
             break;
         case 'small':
             list.push({ name: 'font-size', value: 'inherit' });
+            break;
+        case 'large':
+            list.push({ name: 'font-size', value: '1.72em' });
             break;
         case 'larger':
             list.push({ name: 'font-size', value: '2em' });
@@ -19,16 +22,13 @@ function getTextStyles(settings, preview) {
         case 'extralarge':
             list.push({ name: 'font-size', value: '2.2em' });
             break;
-        case 'large':
-            list.push({ name: 'font-size', value: '1.72em' });
-            break;
-        case 'medium':
+        case 'normal':
         default:
             list.push({ name: 'font-size', value: '1.36em' });
             break;
     }
 
-    switch (settings.textWeight || '') {
+    switch (settings.textWeight || 'normal') {
         case 'bold':
             list.push({ name: 'font-weight', value: 'bold' });
             break;
@@ -38,7 +38,7 @@ function getTextStyles(settings, preview) {
             break;
     }
 
-    switch (settings.dropShadow || '') {
+    switch (settings.dropShadow || 'dropshadow') {
         case 'raised':
             list.push({ name: 'text-shadow', value: '-0.04em -0.04em #fff, 0px -0.04em #fff, -0.04em 0px #fff, 0.04em 0.04em #000, 0px 0.04em #000, 0.04em 0px #000' });
             break;
@@ -57,8 +57,30 @@ function getTextStyles(settings, preview) {
             break;
     }
 
-    const background = settings.textBackground || 'transparent';
+    let backgroundOpacity = settings.backgroundOpacity || '70';
+    if (backgroundOpacity)
+    {
+        backgroundOpacity = parseFloat(backgroundOpacity) / 100.0;
+    }
+
+    let background = settings.textBackground || '#000000';
     if (background) {
+        if (background.startsWith('rgb('))
+        {
+            background = background.replace('rgb(', 'rgba(').replace(')', backgroundOpacity + ')');
+        }
+        else if (background.startsWith('hsl('))
+        {
+            background = background.replace('hsl(', 'hsla(').replace(')', backgroundOpacity + ')');
+        }
+        else if (background.startsWith('#'))
+        {
+            let opacityHex = Math.floor(255 * backgroundOpacity).toString(16);
+            if (opacityHex.length === 1) {
+                opacityHex = '0' + opacityHex;
+            }
+            background += opacityHex;
+        }
         list.push({ name: 'background-color', value: background });
     }
 
@@ -67,7 +89,7 @@ function getTextStyles(settings, preview) {
         list.push({ name: 'color', value: textColor });
     }
 
-    switch (settings.font || '') {
+    switch (settings.font || 'default') {
         case 'typewriter':
             list.push({ name: 'font-family', value: '"Courier New",monospace' });
             list.push({ name: 'font-variant', value: 'none' });
@@ -92,6 +114,7 @@ function getTextStyles(settings, preview) {
             list.push({ name: 'font-family', value: 'Copperplate Gothic,Copperplate Gothic Bold,Copperplate,system-ui,-apple-system,BlinkMacSystemFont,sans-serif' });
             list.push({ name: 'font-variant', value: 'small-caps' });
             break;
+        case 'default':
         default:
             list.push({ name: 'font-family', value: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol' });
             list.push({ name: 'font-variant', value: 'none' });

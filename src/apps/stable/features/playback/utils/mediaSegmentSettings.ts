@@ -7,6 +7,9 @@ import { MediaSegmentAction } from '../constants/mediaSegmentAction';
 const PREFIX = 'segmentTypeAction';
 const DEFAULT_ACTIONS: Partial<Record<MediaSegmentType, MediaSegmentAction>> = {
     [MediaSegmentType.Intro]: MediaSegmentAction.AskToSkip,
+    [MediaSegmentType.Preview]: MediaSegmentAction.AskToSkip,
+    [MediaSegmentType.Recap]: MediaSegmentAction.AskToSkip,
+    [MediaSegmentType.Commercial]: MediaSegmentAction.AskToSkip,
     [MediaSegmentType.Outro]: MediaSegmentAction.AskToSkip
 };
 

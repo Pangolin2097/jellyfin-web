@@ -862,8 +862,11 @@ export class PlaybackManager {
         };
 
         self.playerHasSecondarySubtitleSupport = function (player = self._currentPlayer) {
-            if (!player) return false;
-            return Boolean(player.supports('SecondarySubtitles'));
+            // if (!player) return false;
+            // return Boolean(player.supports('SecondarySubtitles'));
+
+            // Disable secondary subtitles
+            return false;
         };
 
         /**
