@@ -109,6 +109,40 @@ const MainDrawerContent = () => {
                     </List>
                 </>
             )}
+
+            {/* DISCOVER LINKS */}
+            {(!!webConfig.discoverLinks && webConfig.discoverLinks.length > 0) && (
+                <>
+                    <Divider />
+                    <List
+                        aria-labelledby='discover-subheader'
+                        subheader={
+                            <ListSubheader component='div' id='discover-subheader'>
+                                {globalize.translate('HeaderDiscover')}
+                            </ListSubheader>
+                        }
+                    >
+                        {webConfig.discoverLinks.map(discoverLink => (
+                            <ListItem
+                                key={`${discoverLink.name}_${discoverLink.url}`}
+                                disablePadding
+                            >
+                                <ListItemButton
+                                    component='a'
+                                    href={discoverLink.url}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                >
+                                    <ListItemIcon>
+                                        <Icon>{discoverLink.icon ?? 'link'}</Icon>
+                                    </ListItemIcon>
+                                    <ListItemText primary={discoverLink.name} />
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
+                    </List>
+                </>
+            )}
         </>
     );
 };

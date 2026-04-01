@@ -30,6 +30,7 @@
     }
   ],
   "menuLinks": [],
+  "discoverLinks": [],
   "servers": [],
   "plugins": [
     "playAccessValidation/plugin",
