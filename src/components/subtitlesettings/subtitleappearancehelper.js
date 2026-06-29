@@ -6,6 +6,9 @@
 function getTextStyles(settings, preview) {
     const list = [];
 
+    list.push({ name: 'border-radius', value: '5px' });
+    list.push({ name: 'padding', value: '0.2em 0.1em' });
+
     switch (settings.textSize || 'normal') {
         case 'smaller':
             list.push({ name: 'font-size', value: '.8em' });
