@@ -24,7 +24,6 @@ import groupSelectionMenu from '../plugins/syncPlay/ui/groupSelectionMenu';
 import browser from './browser';
 import imageHelper from '../utils/image';
 import { getMenuLinks } from '../scripts/settings/webSettings';
-import { getDiscoverLinks } from '../scripts/settings/webSettings';
 import Dashboard, { pageClassOn } from '../utils/dashboard';
 import { PluginType } from '../types/plugin.ts';
 import Events from '../utils/events.ts';
@@ -334,9 +333,6 @@ function refreshLibraryInfoInDrawer(user) {
     // libraries are added here
     html += '<div class="libraryMenuOptions"></div>';
 
-    // discover links are added here
-    html += '<div class="discoverMenuOptions"></div>';
-
     if (user.localUser?.Policy.IsAdministrator) {
         html += '<div class="adminMenuOptions">';
         html += '<h3 class="sidebarHeader">';
@@ -492,36 +488,6 @@ function updateLibraryMenu(user) {
                 sidebarLink.removeEventListener('click', onSidebarLinkClick);
                 sidebarLink.addEventListener('click', onSidebarLinkClick);
             }
-        });
-    }
-
-    const discoverMenuOptions = document.querySelector('.discoverMenuOptions');
-    if (discoverMenuOptions) {
-        getDiscoverLinks().then(links => {
-            const header = document.createElement('h3');
-            header.classList.add('sidebarHeader');
-            header.textContent = globalize.translate('HeaderDiscover');
-            discoverMenuOptions.appendChild(header);
-
-            links.forEach(link => {
-                const option = document.createElement('a', 'emby-linkbutton');
-                option.classList.add('navMenuOption', 'lnkMediaFolder');
-                option.rel = 'noopener noreferrer';
-                option.target = '_blank';
-                option.href = link.url;
-
-                const icon = document.createElement('span');
-                icon.className = `material-icons navMenuOptionIcon ${link.icon || 'link'}`;
-                icon.setAttribute('aria-hidden', 'true');
-                option.appendChild(icon);
-
-                const label = document.createElement('span');
-                label.className = 'navMenuOptionText';
-                label.textContent = link.name;
-                option.appendChild(label);
-
-                discoverMenuOptions.appendChild(option);
-            });
         });
     }
 }

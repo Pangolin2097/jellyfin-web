@@ -106,18 +106,6 @@ export function getMenuLinks() {
     });
 }
 
-export function getDiscoverLinks() {
-    return getConfig().then(config => {
-        if (!config.discoverLinks) {
-            console.error('web config is invalid, missing discoverLinks:', config);
-        }
-        return config.discoverLinks || [];
-    }).catch(error => {
-        console.log('cannot get web config:', error);
-        return [];
-    });
-}
-
 export function getPlugins() {
     return getConfig().then(config => {
         if (!config.plugins) {

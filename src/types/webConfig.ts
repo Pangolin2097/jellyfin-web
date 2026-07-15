@@ -16,7 +16,6 @@ export interface WebConfig {
     multiserver?: boolean
     themes?: Theme[]
     menuLinks?: MenuLink[]
-    discoverLinks?: MenuLink[]
     servers?: string[]
     plugins?: string[]
 }
