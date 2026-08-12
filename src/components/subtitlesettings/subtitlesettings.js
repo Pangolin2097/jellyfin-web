@@ -35,6 +35,7 @@ function getSubtitleAppearanceObject(context) {
         dropShadow: context.querySelector('#selectDropShadow').value,
         font: context.querySelector('#selectFont').value,
         textBackground: context.querySelector('#inputTextBackground').value,
+        backgroundOpacity: context.querySelector('#sliderBackgroundTransparency').value,
         textColor: layoutManager.tv ? context.querySelector('#selectTextColor').value : context.querySelector('#inputTextColor').value,
         verticalPosition: context.querySelector('#sliderVerticalPosition').value
     };
@@ -66,13 +67,14 @@ function loadForm(context, user, userSettings, appearanceSettings, apiClient) {
 
         context.querySelector('#selectSubtitleStyling').value = appearanceSettings.subtitleStyling || 'Auto';
         context.querySelector('#selectSubtitleStyling').dispatchEvent(new CustomEvent('change', {}));
-        context.querySelector('#selectTextSize').value = appearanceSettings.textSize || '';
+        context.querySelector('#selectTextSize').value = appearanceSettings.textSize || 'normal';
         context.querySelector('#selectTextWeight').value = appearanceSettings.textWeight || 'normal';
-        context.querySelector('#selectDropShadow').value = appearanceSettings.dropShadow || '';
-        context.querySelector('#inputTextBackground').value = appearanceSettings.textBackground || 'transparent';
+        context.querySelector('#selectDropShadow').value = appearanceSettings.dropShadow || 'dropshadow';
+        context.querySelector('#inputTextBackground').value = appearanceSettings.textBackground || '#000000';
+        context.querySelector('#sliderBackgroundTransparency').value = appearanceSettings.backgroundOpacity || '70';
         context.querySelector('#selectTextColor').value = appearanceSettings.textColor || '#ffffff';
         context.querySelector('#inputTextColor').value = appearanceSettings.textColor || '#ffffff';
-        context.querySelector('#selectFont').value = appearanceSettings.font || '';
+        context.querySelector('#selectFont').value = appearanceSettings.font || 'default';
         context.querySelector('#sliderVerticalPosition').value = appearanceSettings.verticalPosition;
         context.querySelector('#selectBitmapSubtitleAspectMode').value = appearanceSettings.aspectMode || 'stretch';
 
@@ -235,20 +237,34 @@ function embed(options, self) {
         self._fullPreview = options.element.querySelector('.subtitleappearance-fullpreview');
         self._refFullPreview = 0;
 
+        const eventPrefix = window.PointerEvent ? 'pointer' : 'mouse';
+
+        const sliderBackgroundOpacityPosition = options.element.querySelector('#sliderBackgroundTransparency');
+        sliderBackgroundOpacityPosition.addEventListener('input', onAppearanceFieldChange);
+        sliderBackgroundOpacityPosition.addEventListener('input', () => showSubtitlePreview.call(self));
+
+        sliderBackgroundOpacityPosition.addEventListener(`${eventPrefix}enter`, () => showSubtitlePreview.call(self, true));
+        sliderBackgroundOpacityPosition.addEventListener(`${eventPrefix}leave`, () => hideSubtitlePreview.call(self, true));
+
         const sliderVerticalPosition = options.element.querySelector('#sliderVerticalPosition');
         sliderVerticalPosition.addEventListener('input', onAppearanceFieldChange);
         sliderVerticalPosition.addEventListener('input', () => showSubtitlePreview.call(self));
 
-        const eventPrefix = window.PointerEvent ? 'pointer' : 'mouse';
         sliderVerticalPosition.addEventListener(`${eventPrefix}enter`, () => showSubtitlePreview.call(self, true));
         sliderVerticalPosition.addEventListener(`${eventPrefix}leave`, () => hideSubtitlePreview.call(self, true));
 
         if (layoutManager.tv) {
+            sliderBackgroundOpacityPosition.addEventListener('focus', () => showSubtitlePreview.call(self, true));
+            sliderBackgroundOpacityPosition.addEventListener('blur', () => hideSubtitlePreview.call(self, true));
+
             sliderVerticalPosition.addEventListener('focus', () => showSubtitlePreview.call(self, true));
             sliderVerticalPosition.addEventListener('blur', () => hideSubtitlePreview.call(self, true));
 
             // Give CustomElements time to attach
             setTimeout(() => {
+                sliderBackgroundOpacityPosition.classList.add('focusable');
+                sliderBackgroundOpacityPosition.enableKeyboardDragging();
+
                 sliderVerticalPosition.classList.add('focusable');
                 sliderVerticalPosition.enableKeyboardDragging();
             }, 0);

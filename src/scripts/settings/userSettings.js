@@ -207,7 +207,7 @@ export class UserSettings {
             return this.set('enableCinemaMode', val.toString(), false);
         }
 
-        return toBoolean(this.get('enableCinemaMode', false), true);
+        return toBoolean(this.get('enableCinemaMode', false), false);
     }
 
     /**
@@ -298,7 +298,7 @@ export class UserSettings {
             return this.set('blurhash', val.toString(), false);
         }
 
-        return toBoolean(this.get('blurhash', false), true);
+        return toBoolean(this.get('blurhash', false), false);
     }
 
     /**
@@ -363,7 +363,7 @@ export class UserSettings {
             return this.set('useEpisodeImagesInNextUpAndResume', val.toString(), true);
         }
 
-        return toBoolean(this.get('useEpisodeImagesInNextUpAndResume', true), false);
+        return toBoolean(this.get('useEpisodeImagesInNextUpAndResume', true), true);
     }
 
     /**
@@ -415,7 +415,7 @@ export class UserSettings {
             return this.set('skipForwardLength', val.toString());
         }
 
-        return parseInt(this.get('skipForwardLength') || '30000', 10);
+        return parseInt(this.get('skipForwardLength') || '10000', 10);
     }
 
     /**
@@ -480,7 +480,7 @@ export class UserSettings {
             return this.set('backdropScreensaverInterval', val.toString(), false);
         }
 
-        return parseInt(this.get('backdropScreensaverInterval', false), 10) || 5;
+        return parseInt(this.get('backdropScreensaverInterval', false), 10) || 10;
     }
 
     /**
@@ -493,7 +493,7 @@ export class UserSettings {
             return this.set('slideshowInterval', val.toString(), false);
         }
 
-        return parseInt(this.get('slideshowInterval', false), 10) || 5;
+        return parseInt(this.get('slideshowInterval', false), 10) || 10;
     }
 
     /**
@@ -524,7 +524,7 @@ export class UserSettings {
             // Explicitly return 0 to avoid returning 100 because 0 is falsy.
             return 0;
         } else {
-            return libraryPageSize || 100;
+            return libraryPageSize || 0;
         }
     }
 

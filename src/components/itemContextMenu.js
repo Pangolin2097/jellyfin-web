@@ -338,6 +338,15 @@ export async function getCommands(options) {
         });
     }
 
+    if (item.UserData.PlaybackPositionTicks > 0)
+    {
+        commands.push({
+            name: globalize.translate('RemoveFromContinueWatching'),
+            id: 'removefromcontinuewatching',
+            icon: 'remove'
+        });
+    }
+
     if (!browser.tv && options.share === true && itemHelper.canShare(item, user)) {
         commands.push({
             name: globalize.translate('Share'),
@@ -611,6 +620,17 @@ function executeCommand(item, id, options) {
                 break;
             case 'queueallfromhere':
                 getResolveFunction(resolve, id)();
+                break;
+            case 'removefromcontinuewatching':
+                apiClient.ajax({
+                    url: apiClient.getUrl('Users/' + options.user.Id + '/Items/' + item.Id + "/UserData"),
+                    type: 'POST',
+                    data: JSON.stringify({ PlaybackPositionTicks: 0 }),
+                    contentType: 'application/json',
+                    dataType: 'json'
+                }).then(function () {
+                    getResolveFunction(resolve, id, true)();
+                });
                 break;
             case 'removefromplaylist':
                 apiClient.ajax({
